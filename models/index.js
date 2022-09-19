@@ -17,10 +17,17 @@ db.comments = require('./comments')(sequelize, Sequelize);
 
 // defining relationships
 db.users.hasMany(db.questions);
+db.users.hasMany(db.answers);
 db.questions.belongsTo(db.users);
-db.answers.belongsTo(db.answers);
-db.votes.belongsTo(db.votes);
-db.comments.belongsTo(db.comments);
+db.answers.belongsTo(db.users);
+db.answers.belongsTo(db.questions);
+db.questions.hasMany(db.answers);
+db.votes.belongsTo(db.users);
+db.users.hasMany(db.votes);
+db.votes.belongsTo(db.answers);
+db.comments.belongsTo(db.users);
+db.users.hasMany(db.comments);
+db.comments.belongsTo(db.answers);
 //... your other relationships here
 
 // defining relationship automatically
