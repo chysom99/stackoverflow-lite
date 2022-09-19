@@ -12,7 +12,7 @@ app.use(routes);
 const PORT = process.env.PORT || 4040;
 
 db.sequelize.sync().then(() => {
-    console.log('Database Synced')
+    console.log('Database Synced successfully')
 }).catch((err) => {
     console.log('Database synchronization failed, ' + err)
 })
