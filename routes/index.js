@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const createUserController = require('../controllers/user')
+const createUserController = require('../controllers/user.js')
+const { signup, login } = createUserController
+const userAuth = require('../middleware/auth.js')
 
 router.get('/', (req, res) => {
     res.send("I got you covered, hit me any time!! ");
 })
 
-router.post('/users', createUserController);
+router.post('/signup', userAuth.saveUser, signup)
+router.post('/login', login )
+//router.post('/users', createUserController);
 
 
-module.exports = router;
+module.exports = router

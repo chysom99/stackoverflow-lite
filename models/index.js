@@ -6,6 +6,12 @@ const sequelize = new Sequelize(config.DATABASE, config.DB_USERNAME, config.DB_P
     dialect: 'mysql' /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
 });
 
+sequelize.authenticate().then(() => {
+  console.log(`Database connected to discover`)
+}).catch((err) => {
+  console.log(err)
+})
+
 const db = {};
 
 db.users = require('./users')(sequelize, Sequelize);
@@ -52,4 +58,5 @@ Object.keys(db).forEach(function(modelName) {
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.users = require('./users')(sequelize, Sequelize.DataTypes)
 module.exports = db;
