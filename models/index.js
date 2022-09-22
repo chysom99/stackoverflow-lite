@@ -51,5 +51,5 @@ Object.keys(db).forEach(function(modelName) {
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.users = require('./users')(sequelize, Sequelize.DataTypes)
+
 module.exports = db;

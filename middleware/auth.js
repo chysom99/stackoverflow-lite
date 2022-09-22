@@ -2,7 +2,7 @@ const express = require("express");
 const db = require('../models/index');
 const User = db.users;
 
-const saveUser = async (req, res, next) => {
+const validateUser = async (req, res, next) => {
     try {
         console.log(req.body)
         const username = await User.findOne({
@@ -11,7 +11,7 @@ const saveUser = async (req, res, next) => {
             },
         });
         if (username) {
-            return res.status(409).send("username already taken");
+            return res.status(409).json({message:"username already taken"});
         }
 
         const emailcheck = await User.findOne({
@@ -21,7 +21,7 @@ const saveUser = async (req, res, next) => {
         });
 
         if (emailcheck) {
-            return res.status(409).send("Authentication failed");
+            return res.status(409).json({message:"Email already taken"});
         }
 
         next();
@@ -32,5 +32,5 @@ const saveUser = async (req, res, next) => {
 
 
 module.exports = {
-    saveUser,
+    validateUser,
 };

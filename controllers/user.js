@@ -16,21 +16,10 @@ const signup = async (req, res) => {
 
         const user = await User.create(data);
 
-        if (user) {
-            let token = jwt.sign({ id: user.id }, process.env.secretKey, {
-                expiresIn: 1 * 24 * 60 * 60 * 1000,
-            });
-
-            res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-            console.log("user", JSON.stringify(user, null, 2));
-            console.log(token);
-
-            return res.status(201).send(user);
-        } else {
-            return res.status(409).send("Details are not correct");
-        }
+        return res.status(201).json({message:"User created successfully", "user":user});
     } catch (error) {
         console.log(error);
+        return res.status(500).json({message:"An error occured while processing your request"});
     }
 };
 
@@ -48,23 +37,22 @@ const login = async (req, res) => {
                     expiresIn: 1 * 24 * 60 * 60 * 1000,
                 });
 
-                res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
-                console.log("user", JSON.stringify(user, null, 2));
-                console.log(token);
-
+                
                 var response = {
-                    email : user.email
+                    loginToken : token
                 }
-                return res.status(201).send(response);
+                return res.status(201).json({message:"Login successful", data:response});
             } else {
-                return res.status(401).send("Authentication failed");
+                return res.status(401).json({message:"Authentication failed"});
             }
         } else {
-            return res.status(401).send("Authentication failed");
+            return res.status(401).json({message:"Authentication failed"});
         }
     } catch (error) {
         console.log(error);
     }
+        return res.status(500).json({message:"An error occurred while processing your request"});
+    
 };
 
 module.exports = {

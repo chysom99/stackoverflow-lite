@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     res.send("I got you covered, hit me any time!! ");
 })
 
-router.post('/signup', userAuth.saveUser, signup)
+router.post('/signup', userAuth.validateUser, signup)
 router.post('/login', login )
 //router.post('/users', createUserController);
 
