@@ -44,10 +44,10 @@ const login = async (req, res) => {
                 }
                 return res.status(201).json({message:"Login successful", data:response});
             } else {
-                return res.status(401).json({message:"Authentication failed. code 1"});
+                return res.status(401).json({message:"Authentication failed"});
             }
         } else {
-            return res.status(401).json({message:"Authentication failed. code 2"});
+            return res.status(401).json({message:"Authentication failed"});
         }
     } catch (error) {
         console.log(error);
