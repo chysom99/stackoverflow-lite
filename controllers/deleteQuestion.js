@@ -12,7 +12,7 @@ const deleteQuestion = async (req, res) => {
         return res.status(200).json({ success: 'true', message: 'successfully deleted a question' })
 
     } catch (err) {
-        return res.status(401).json({ success: 'false', message: 'unauthorized to delete this question' })
+        return res.status(500).json({ success: 'false', message: 'An error occurred while processing your request' })
     }
 };
 module.exports = {

@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.post('/signup', userAuth.validateUser, signup)
 router.post('/login', login )
 router.post('/question', auth_token, postQuestion.createQuestion)
-router.delete('/question', auth_token ,deleteQuestion.deleteQuestion)
+router.delete('/question/:id', auth_token ,deleteQuestion.deleteQuestion)
 //router.post('/users', createUserController);
 
 
