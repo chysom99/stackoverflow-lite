@@ -7,9 +7,6 @@ const auth_token = require('../middleware/auth_token')
 const postQuestion = require('../controllers/postQuestion')
 
 router.get('/', (req, res) => {
-    console.log(req.headers)
-    let token = req.headers.authorization;
-    if (token && token.startsWith('Bearer ')) { }
     res.send("I got you covered, hit me any time!! ");
 })
 
