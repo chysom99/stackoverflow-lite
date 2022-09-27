@@ -27,9 +27,10 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ where: {email : email}  });
 
         if (user) {
+            
             const isSame = await bcrypt.compare(password, user.password);
 
             if (isSame) {
@@ -43,10 +44,10 @@ const login = async (req, res) => {
                 }
                 return res.status(201).json({message:"Login successful", data:response});
             } else {
-                return res.status(401).json({message:"Authentication failed"});
+                return res.status(401).json({message:"Authentication failed. code 1"});
             }
         } else {
-            return res.status(401).json({message:"Authentication failed"});
+            return res.status(401).json({message:"Authentication failed. code 2"});
         }
     } catch (error) {
         console.log(error);
