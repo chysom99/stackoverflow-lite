@@ -7,7 +7,7 @@ const viewAnswer = async (req, res) => {
 
         const answers = await models.answers.findAll({ where: { question_id: question_id } });
 
-        return res.status(200).json({ success: 'true', message: answers })
+        return res.status(200).json({ success: 'true', data: answers })
 
     } catch (err) {
         return res.status(500).json({ success: 'false', message: 'An error occurred while processing your request' })
