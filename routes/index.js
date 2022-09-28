@@ -7,6 +7,7 @@ const auth_token = require('../middleware/auth_token')
 const postQuestion = require('../controllers/postQuestion')
 const postAnswer = require('../controllers/postAnswer')
 
+const deleteQuestion = require('../controllers/deleteQuestion')
 
 router.get('/', (req, res) => {
     res.send("I got you covered, hit me any time!! ");
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
 router.post('/signup', userAuth.validateUser, signup)
 router.post('/login', login )
 router.post('/question', auth_token, postQuestion.createQuestion)
+router.delete('/question/:id', auth_token ,deleteQuestion.deleteQuestion)
 router.post('/answer', auth_token, postAnswer.createAnswer)
 //router.post('/users', createUserController);
 
