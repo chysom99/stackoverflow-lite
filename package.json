@@ -18,5 +18,19 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.6"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chysom99/stackoverflow-lite.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/chysom99/stackoverflow-lite/issues"
+  },
+  "homepage": "https://github.com/chysom99/stackoverflow-lite#readme"
 }
