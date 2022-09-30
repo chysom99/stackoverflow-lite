@@ -6,7 +6,25 @@ const acceptAnswer = async (req, res) => {
         const answer = await models.answers.findOne({
             where: { id: answer_id },
         });
+        const user_id = req.user_id;
+        const question = await models.questions.findOne({
+            attributes: ['id'],
+            where: { id: answer.question_id, user_id: user_id },
+            raw: true,
+        });
 
+        if (!question) {
+            return res.status(400).json({
+                message: 'You are not permitted to accept this answer',
+            });
+        }
+        const prevPreferredAnswer = await models.answers.findOne({
+            where: { question_id: question.id, is_preferred: true },
+        });
+        if (prevPreferredAnswer) {
+            prevPreferredAnswer.is_preferred = false;
+            await prevPreferredAnswer.save();
+        }
         answer.is_preferred = is_preferred;
         await answer.save();
 
