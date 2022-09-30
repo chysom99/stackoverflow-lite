@@ -20,7 +20,7 @@ router.post('/question', auth_token, postQuestion.createQuestion);
 router.delete('/question/:id', auth_token, deleteQuestion.deleteQuestion);
 router.post('/answer', auth_token, postAnswer.createAnswer);
 router.get('/answer/:question_id', auth_token, viewAnswer.viewAnswer);
-router.post('/answer/:answer_id', auth_token, acceptAnswer.acceptAnswer);
+router.put('/answer/:answer_id', auth_token, acceptAnswer.acceptAnswer);
 // router.post('/users', createUserController);
 
 module.exports = router;
