@@ -22,7 +22,7 @@ router.delete('/question/:id', auth_token, deleteQuestion.deleteQuestion);
 router.post('/answer', auth_token, postAnswer.createAnswer);
 router.get('/answer/:question_id', auth_token, viewAnswer.viewAnswer);
 router.put('/answer/:answer_id', auth_token, acceptAnswer.acceptAnswer);
-router.post('/comment/:id', auth_token, commentAnswer.commentAnswer);
+router.post('/comment', auth_token, commentAnswer.commentAnswer);
 // router.post('/users', createUserController);
 
 module.exports = router;
