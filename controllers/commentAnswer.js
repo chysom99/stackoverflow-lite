@@ -1,7 +1,7 @@
 const models = require('../models/index');
 const commentAnswer = async (req, res) => {
     try {
-        const commentId = parseInt(req.params.id);
+        // const commentId = parseInt(req.params.id);
         const { comment_text, answer_id } = req.body;
         const user_id = req.user_id;
 
@@ -15,7 +15,7 @@ const commentAnswer = async (req, res) => {
         if (answer) {
             const comment = await models.comments.create({
                 comment_text: comment_text,
-                id: commentId,
+                // id: commentId,
                 user_id: user_id,
                 answer_id: answer_id,
             });
