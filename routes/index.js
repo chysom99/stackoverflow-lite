@@ -10,6 +10,7 @@ const deleteQuestion = require('../controllers/deleteQuestion');
 const viewAnswer = require('../controllers/viewAnswer');
 const acceptAnswer = require('../controllers/acceptAnswer');
 const commentAnswer = require('../controllers/commentAnswer');
+const getQuestions = require('../controllers/getQuestions.js');
 
 router.get('/', (req, res) => {
     res.send('I got you covered, hit me any time!! ');
@@ -23,6 +24,7 @@ router.post('/answer', auth_token, postAnswer.createAnswer);
 router.get('/answer/:question_id', auth_token, viewAnswer.viewAnswer);
 router.put('/answer/:answer_id', auth_token, acceptAnswer.acceptAnswer);
 router.post('/comment', auth_token, commentAnswer.commentAnswer);
+router.get('/question', auth_token, getQuestions.getQuestions);
 // router.post('/users', createUserController);
 
 module.exports = router;
