@@ -1,9 +1,12 @@
 const models = require('../models/index');
-const getQuestion = async (req, res) => {
+const getQuestions = async (req, res) => {
     try {
-        const userId = parseInt(req.params.user_id);
+        const userId = parseInt(req.query.user_id);
+        const whereClause = {};
+        if (userId) whereClause.user_id = userId;
         const questions = await models.questions.findAll({
-            where: { user_id: userId },
+            raw: true,
+            where: whereClause,
         });
         return res.status(200).json({ success: 'true', data: questions });
     } catch (err) {
@@ -13,5 +16,5 @@ const getQuestion = async (req, res) => {
     }
 };
 module.exports = {
-    getQuestion: getQuestion,
+    getQuestions: getQuestions,
 };
