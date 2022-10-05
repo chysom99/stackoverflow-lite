@@ -18,7 +18,7 @@ const voteAnswers = async (req, res) => {
             });
             return res.status(200).json(vote);
         } else {
-            return res.status(404).json({ messages: err.message });
+            return res.status(500).json({ messages: err.message });
         }
     } catch (err) {
         return res.status(500).json({ messages: err.message });
