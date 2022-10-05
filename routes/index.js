@@ -11,6 +11,7 @@ const viewAnswer = require('../controllers/viewAnswer');
 const acceptAnswer = require('../controllers/acceptAnswer');
 const commentAnswer = require('../controllers/commentAnswer');
 const getQuestions = require('../controllers/getQuestions.js');
+const voteAnswers = require('../controllers/voteAnswers.js');
 
 router.get('/', (req, res) => {
     res.send('I got you covered, hit me any time!! ');
@@ -25,6 +26,7 @@ router.get('/answer/:question_id', auth_token, viewAnswer.viewAnswer);
 router.put('/answer/:answer_id', auth_token, acceptAnswer.acceptAnswer);
 router.post('/comment', auth_token, commentAnswer.commentAnswer);
 router.get('/question', auth_token, getQuestions.getQuestions);
+router.put('/vote', auth_token, voteAnswers.voteAnswers);
 // router.post('/users', createUserController);
 
 module.exports = router;
