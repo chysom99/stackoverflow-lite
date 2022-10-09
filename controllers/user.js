@@ -1,25 +1,33 @@
 // const models = require('../models/index');
-const bcrypt = require("bcrypt");
-const db = require("../models/index");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const db = require('../models/index');
+const jwt = require('jsonwebtoken');
 
 const User = db.users;
 
 const signup = async (req, res) => {
     try {
-        const { userName, email, password } = req.body;
+        const { userName, email, firstName, lastName, password } = req.body;
         const data = {
             userName,
             email,
+            firstName,
+            lastName,
             password: await bcrypt.hash(password, 10),
         };
 
         const user = await User.create(data);
 
-        return res.status(201).json({message:"User created successfully", "user":user});
+        return res
+            .status(201)
+            .json({ message: 'User created successfully', user: user });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({message:"An error occured while processing your request"});
+        return res
+            .status(500)
+            .json({
+                message: 'An error occured while processing your request',
+            });
     }
 };
 
@@ -27,10 +35,9 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const user = await User.findOne({ where: {email : email}  });
+        const user = await User.findOne({ where: { email: email } });
 
         if (user) {
-            
             const isSame = await bcrypt.compare(password, user.password);
 
             if (isSame) {
@@ -38,22 +45,26 @@ const login = async (req, res) => {
                     expiresIn: 1 * 24 * 60 * 60 * 1000,
                 });
 
-                
                 var response = {
-                    loginToken : token
-                }
-                return res.status(201).json({message:"Login successful", data:response});
+                    loginToken: token,
+                };
+                return res
+                    .status(201)
+                    .json({ message: 'Login successful', data: response });
             } else {
-                return res.status(401).json({message:"Authentication failed"});
+                return res
+                    .status(401)
+                    .json({ message: 'Authentication failed' });
             }
         } else {
-            return res.status(401).json({message:"Authentication failed"});
+            return res.status(401).json({ message: 'Authentication failed' });
         }
     } catch (error) {
         console.log(error);
     }
-        return res.status(500).json({message:"An error occurred while processing your request"});
-    
+    return res
+        .status(500)
+        .json({ message: 'An error occurred while processing your request' });
 };
 
 module.exports = {
