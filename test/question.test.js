@@ -29,48 +29,46 @@ describe('Question Test', function () {
     });
 
     //positive test for delete question
-    describe('Positive Tests', function () {
-        it('should successfully delete a question', async function () {
-            const response = await supertest(app)
-                .delete('/api/v1/question/:id')
-                .set({
-                    Authorization: sample_data.auth_token,
-                    Accept: 'application/json',
-                })
-                .send({
-                    id: '32',
-                })
-                .expect(200);
+    //describe('Positive Tests', function () {
+    it('should successfully delete a question', async function () {
+        const response = await supertest(app)
+            .delete('/api/v1/question/:id')
+            .set({
+                Authorization: sample_data.auth_token,
+                Accept: 'application/json',
+            })
+            .send({
+                id: '80',
+            })
+            .expect(200);
 
-            const resp_data = response.body;
-            expect(resp_data).to.be.an('object');
-            expect(resp_data).to.have.property('message');
-            expect(resp_data.message).to.contain(
-                'successfully deleted a question'
-            );
-        });
+        const resp_data = response.body;
+        expect(resp_data).to.be.an('object');
+        expect(resp_data).to.have.property('message');
+        expect(resp_data.message).to.contain('successfully deleted a question');
     });
+    //});
 
     //positive test for get question
-    describe('Positive Tests', function () {
-        it('should successfully get a question', async function () {
-            const response = await supertest(app)
-                .get('/api/v1/question')
-                .set({
-                    Authorization: sample_data.auth_token,
-                    Accept: 'application/json',
-                })
-                .send({
-                    user_id: '1',
-                })
-                .expect(200);
+    //describe('Positive Tests', function () {
+    it('should successfully get a question', async function () {
+        const response = await supertest(app)
+            .get('/api/v1/question')
+            .set({
+                Authorization: sample_data.auth_token,
+                Accept: 'application/json',
+            })
+            .send({
+                user_id: '1',
+            })
+            .expect(200);
 
-            const resp_data = response.body;
-            expect(resp_data).to.be.an('object');
-            expect(resp_data).to.have.property('data');
-            expect(resp_data.data).to.be.an('array');
-        });
+        const resp_data = response.body;
+        expect(resp_data).to.be.an('object');
+        expect(resp_data).to.have.property('data');
+        expect(resp_data.data).to.be.an('array');
     });
+    // });
 
     //negative test for post question
     describe('Negative Tests', function () {
@@ -93,43 +91,43 @@ describe('Question Test', function () {
     });
 
     //negative test for delete question
-    describe('Negative Tests', function () {
-        it('should not delete a question', async function () {
-            const response = await supertest(app)
-                .delete('/api/v1/question/:id')
-                .set({
-                    Authorization: sample_data.auth_token,
-                    Accept: 'application/json',
-                })
-                .send({
-                    id: '900',
-                })
-                .expect(404);
-            const resp_data = response.body;
-            expect(resp_data).to.be.an('object');
-            expect(resp_data.message).to.be.an('string');
-            expect(resp_data.message).to.contain('No question with such id');
-        });
+    //describe('Negative Tests', function () {
+    it('should not delete a question', async function () {
+        const response = await supertest(app)
+            .delete('/api/v1/question/:id')
+            .set({
+                Authorization: sample_data.auth_token,
+                Accept: 'application/json',
+            })
+            .send({
+                id: '900',
+            })
+            .expect(404);
+        const resp_data = response.body;
+        expect(resp_data).to.be.an('object');
+        expect(resp_data.message).to.be.an('string');
+        expect(resp_data.message).to.contain('No question with such id');
     });
+    //});
 
     //negative test for get question
-    describe('Negative Tests', function () {
-        it('should not successfully get a question', async function () {
-            const response = await supertest(app)
-                .get('/api/v1/question')
-                .set({
-                    Authorization: sample_data.auth_token,
-                    Accept: 'application/json',
-                })
-                .send({
-                    user_id: '1',
-                })
-                .expect(200);
+    //describe('Negative Tests', function () {
+    it('should not get a question', async function () {
+        const response = await supertest(app)
+            .get('/api/v1/question')
+            .set({
+                Authorization: sample_data.auth_token,
+                Accept: 'application/json',
+            })
+            .send({
+                user_id: '1',
+            })
+            .expect(200);
 
-            const resp_data = response.body;
-            expect(resp_data).to.be.an('object');
-            expect(resp_data).to.have.property('data');
-            expect(resp_data.data).to.be.an('array');
-        });
+        const resp_data = response.body;
+        expect(resp_data).to.be.an('object');
+        expect(resp_data).to.have.property('data');
+        expect(resp_data.data).to.be.an('array');
     });
+    //});
 });
