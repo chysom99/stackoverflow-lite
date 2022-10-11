@@ -30,7 +30,6 @@ describe('Answer Test', function () {
     });
 
     //positive test for viewing answer
-    //describe('Positive Tests', function () {
     it('should successfully view an answer', async function () {
         const response = await supertest(app)
             .get('/api/v1/answer/:question_id')
@@ -47,10 +46,8 @@ describe('Answer Test', function () {
         expect(resp_data).to.have.property('data');
         expect(resp_data.data).to.be.an('array');
     });
-    //});
 
     //positive test for commenting on an answer
-    //describe('Positive Tests', function () {
     it('should successfully comment on an answer', async function () {
         const response = await supertest(app)
             .post('/api/v1/comment')
@@ -69,10 +66,8 @@ describe('Answer Test', function () {
         expect(resp_data).to.have.property('user_id');
         expect(resp_data.user_id).to.be.an('number');
     });
-    //});
 
     //negative test for post answer
-    //describe('Negative Tests', function () {
     it('should not successfully post an answer', async function () {
         const response = await supertest(app)
             .post('/api/v1/answer')
@@ -91,9 +86,8 @@ describe('Answer Test', function () {
         expect(resp_data.messages).to.be.an('string');
         expect(resp_data.messages).to.contain('Answer text is required');
     });
-    //});
-    //negative for commenting on an answer
-    //describe('Negative Tests', function () {
+
+    //negative test for commenting on an answer
     it('should not successfully comment an answer', async function () {
         const response = await supertest(app)
             .post('/api/v1/comment')
@@ -107,11 +101,9 @@ describe('Answer Test', function () {
                 //answer_id: '9',
             })
             .expect(404);
-
         const resp_data = response.body;
         expect(resp_data).to.be.an('object');
         expect(resp_data.messages).to.be.an('string');
         expect(resp_data.messages).to.contain('Answer does not exist');
     });
-    //});
 });
