@@ -31,14 +31,12 @@ describe('Question Test', function () {
     //positive test for delete question
     it('should successfully delete a question', async function () {
         const response = await supertest(app)
-            .delete('/api/v1/question/:id')
+            .delete('/api/v1/question/91')
             .set({
                 Authorization: sample_data.auth_token,
                 Accept: 'application/json',
             })
-            .send({
-                id: '80',
-            })
+
             .expect(200);
 
         const resp_data = response.body;
