@@ -22,12 +22,10 @@ const signup = async (req, res) => {
             .status(201)
             .json({ message: 'User created successfully', user: user });
     } catch (error) {
-        console.log(error);
-        return res
-            .status(500)
-            .json({
-                message: 'An error occured while processing your request',
-            });
+        //console.log(error);
+        return res.status(500).json({
+            message: 'An error occured while processing your request',
+        });
     }
 };
 
@@ -60,7 +58,7 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Authentication failed' });
         }
     } catch (error) {
-        console.log(error);
+        //console.log(error);
     }
     return res
         .status(500)

@@ -32,7 +32,7 @@ describe('User Login Test', function () {
                 .post('/api/v1/login')
                 .send({
                     email: 'ofoeduc7@gmail.com',
-                    password: 'ofoedu1',
+                    password: 'ofoed',
                 })
                 .set('Accept', 'application/json')
                 .expect(401);

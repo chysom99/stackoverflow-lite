@@ -20,7 +20,7 @@ describe('User Registration Test', function () {
                 .expect(201);
 
             const resp_data = response.body;
-            console.log(resp_data);
+
             expect(resp_data).to.be.an('object');
             expect(resp_data).to.have.property('user');
             expect(resp_data.user.id).to.be.an('number');
